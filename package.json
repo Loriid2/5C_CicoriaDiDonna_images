@@ -1,0 +1,27 @@
+{
+  "name": "5c_cicoriadidonna_images",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Loriid2/5C_CicoriaDiDonna_images.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Loriid2/5C_CicoriaDiDonna_images/issues"
+  },
+  "homepage": "https://github.com/Loriid2/5C_CicoriaDiDonna_images#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.12.0",
+    "path": "^0.12.7"
+  }
+}
