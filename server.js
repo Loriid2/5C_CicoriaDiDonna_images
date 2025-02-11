@@ -10,8 +10,23 @@ app.use(bodyParser.urlencoded({
 }));
 
 const path = require('path');
+const multer = require('multer');
+
+var storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, path.join(__dirname, "files"));
+    },
+    filename: function (req, file, callback) {
+        callback(null, file.originalname);
+    }
+});
+const upload = multer({ storage: storage }).single('file');
 app.use("/", express.static(path.join(__dirname, "public")));
 app.post("/image/add", (req, res) => {
+   upload(req, res, (err) => {
+      console.log(req.file.filename);    
+      res.json({ url: "./files/" + req.file.filename });    
+  });
 
     const image = req.body;
  
@@ -32,6 +47,14 @@ app.delete("/image/:id", async (req, res) => {
     try {
       await serverDB.del(req.params.id); 
       res.json({ result: "Ok" });
+      fs.unlink(await serverDB.select().url, (err) => {
+         if (err) {
+           console.error(`Error removing file: ${err}`);
+           return;
+         }
+       
+         console.log(`File has been successfully removed.`);
+       });
     } catch (error) {
       res.status(500).json({ error: "Errore durante l'eliminazione" });
     }
