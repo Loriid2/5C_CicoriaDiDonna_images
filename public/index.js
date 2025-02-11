@@ -9,8 +9,8 @@ const loginForm = generateModalForm(document.getElementById('loginModalBody')) ;
 
 
 const loginFormSetup = {
-    "username": ["text", "input-group"],
-    "password": ["password", "input-group"],
+    "username": ["text", "input margin"],
+    "password": ["password", "input margin"],
 } ;
 loginForm.build(loginFormSetup, "loginModal");
 //console.log(loginForm) ;
