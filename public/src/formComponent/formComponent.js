@@ -28,42 +28,35 @@ export const generateModalForm = (parentElement) => {
 
             labels.forEach(e => {
                 if (preValues == null) {
-
+                    //console.log(configuration[e][1]);
                     html += `
                     <div class="">
                         <div class="">
-                            <label class=""
-                                for="${e}">
-                                ${e}
-                            </label>
-                            <input
-                                class="${configuration[e][1]}"
-                                type="${configuration[e][0]}" name=${e} id=${e}>
+                            <div class="inputGroup">
+                                <input type="text" required="" autocomplete="off">
+                                <label for="${e}">${e}</label>
+                            </div>
                         </div>
                     </div>`
                 } else {
                     html += `
                     <div class="">
                         <div class="">
-                            <label class=""
-                                for="${e}">
-                                ${e}
-                            </label>
-                            <input
-                                class="${configuration[e][1]}"
-                                type="${configuration[e][0]}" name=${e} id=${e} value="${preValues[e]}">
-                        </div>
+                            <div class="inputGroup">
+                                <input type="text" required="" autocomplete="off" value="${preValues[e]}">
+                                <label for="${e}">${e}</label>
+                            </div>
                     </div>`
                 }
             });
-            
+
             document.getElementById(idForm + "Footer").innerHTML = `<button id="closeButton${idForm}" type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                                                    <button id="submitButton${idForm}" type="button" class="btn btn-success" data-bs-dismiss="modal">Submit</button>` ;      
-            
+                                                                    <button id="submitButton${idForm}" type="button" class="btn btn-success" data-bs-dismiss="modal">Submit</button>`;
+
             html += '<div style="color: red;" id="errorDiv' + idForm + '"></div>';
 
             parentElement.innerHTML = html;
-            
+
             document.querySelectorAll('.close-modal').forEach(btn => {
                 toggleModal('remove', btn);
             });
