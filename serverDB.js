@@ -40,6 +40,12 @@ const serverDB = {
         `;
         return executeQuery(sql);
     },
+    selectById: function (id) {
+        const sql = `
+        SELECT id, url FROM images WHERE id=$ID
+        `;
+        return executeQuery(sql.replace("$ID", id));
+    },
     del: function (id) {
         let sql = `
         DELETE FROM images
@@ -51,7 +57,7 @@ const serverDB = {
     test: async function () {
         await this.createTable();
         // await this.insert({url: "test " + new Date().getTime()});
-        const images = await this.select();
+        const images = await this.selectById(6);
         console.log("Risultato della query SELECT:", images);
     }
 };

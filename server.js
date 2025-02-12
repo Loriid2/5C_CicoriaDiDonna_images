@@ -47,7 +47,7 @@ app.delete("/image/:id", async (req, res) => {
     try {
       await serverDB.del(req.params.id); 
       res.json({ result: "Ok" });
-      fs.unlink(await serverDB.select().url, (err) => {
+      fs.unlink(await serverDB.selectById(req.params.id).url, (err) => {
          if (err) {
            console.error(`Error removing file: ${err}`);
            return;
