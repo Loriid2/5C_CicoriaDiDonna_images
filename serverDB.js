@@ -31,7 +31,7 @@ const serverDB = {
         const template = `
         INSERT INTO images (url) VALUES ('$URL')
         `;
-        let sql = template.replace("$URL", image.url);
+        let sql = template.replace("$URL",image.url);
         return executeQuery(sql);
     },
     select: function () {
@@ -57,8 +57,14 @@ const serverDB = {
     test: async function () {
         await this.createTable();
         // await this.insert({url: "test " + new Date().getTime()});
-        const images = await this.selectById(6);
+        const images = await this.select();
         console.log("Risultato della query SELECT:", images);
+    },
+    clear : function(){
+        const sql = `
+        DELETE FROM images
+        `;
+        return executeQuery(sql);
     }
 };
 

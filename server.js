@@ -22,19 +22,23 @@ var storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage }).single('file');
 app.use("/", express.static(path.join(__dirname, "public")));
-app.post("/image/add", (req, res) => {
-   upload(req, res, (err) => {
-      console.log(req.file.filename);    
-      res.json({ url: "./files/" + req.file.filename });    
-  });
+app.use("/files", express.static(path.join(__dirname, "files")));
 
-    const image = req.body;
- 
-    serverDB.insert(image);
- 
-    res.json({result: "Ok"});
- 
- });
+app.post("/image/add", (req, res) => {
+  upload(req, res, (err) => {
+      if (err) {
+          return res.status(500).json({ error: "Errore durante il caricamento del file" });
+      }
+      console.log(req.body.url);
+      const image = { url: "./files/" + req.body.url};
+      serverDB.insert(image)
+          .then(() => {
+              serverDB.test(); 
+              res.json({ url: image.url });
+          })
+          .catch(error => res.status(500).json({ error: "Errore durante l'inserimento nel database" }));
+  });
+});
  app.get("/image", async (req, res) => {
     try {
         const images = await serverDB.select();
@@ -66,4 +70,6 @@ app.delete("/image/:id", async (req, res) => {
     console.log("- server running");
   
   });
-  serverDB.test();
+  //serverDB.insert({url:"/files/storia1.jpg"});
+serverDB.test();
+

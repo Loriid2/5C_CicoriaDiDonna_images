@@ -1,12 +1,12 @@
 import {generateModalForm} from "./src/formComponent/formComponent.js" ;
 
-const carousel = document.querySelector('#carousel');
+const carouselInner = document.querySelector('#carouselInner');
 const adminButton = document.querySelector('#adminButton');
 
 const loginModal = new bootstrap.Modal(document.getElementById('loginModal')) ;
 
 const loginForm = generateModalForm(document.getElementById('loginModalBody')) ;
-
+let images = [];
 
 const loginFormSetup = {
     "username": ["text", "input margin"],
@@ -17,7 +17,8 @@ loginForm.build(loginFormSetup, "loginModal");
 loginForm.render(null);
 loginForm.onsubmit(() => {}) ;
 const send=(img)=>{
-    fetch("/todo/add", {
+  console.log(img);
+    fetch(`/image/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,11 +34,13 @@ const getImages = () => {
     fetch("/image")
     .then((response) => response.json())
     .then((data) => {
-       // logica della get lato client
+       images = data.images;
+       console.log(images);
+       render();
     }); 
 }
 const remove = (id)=>{
-    fetch(`"/image/${id}`, {
+    fetch(`/image/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -48,3 +51,25 @@ const remove = (id)=>{
           //logica della delete lato client
         });
 }
+
+const render=()=>{
+    carouselInner.innerHTML = "";
+    images.forEach((img, index) => {
+      if(index==0){
+        carouselInner.innerHTML += `
+        <div class="carousel-item active">
+            <img src="${img.url}" class="d-block w-50"  alt="...">
+        </div>`
+      }else{
+        carouselInner.innerHTML += `
+        <div class="carousel-item">
+            <img src="${img.url}" class="d-block w-50" alt="...">
+        </div>`
+      }
+    });
+    console.log(carouselInner.innerHTML);
+}
+render();
+getImages();
+
+
