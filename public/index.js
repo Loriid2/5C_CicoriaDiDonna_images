@@ -15,7 +15,9 @@ const loginFormSetup = {
 loginForm.build(loginFormSetup, "loginModal");
 //console.log(loginForm) ;
 loginForm.render(null);
-loginForm.onsubmit(() => {}) ;
+loginForm.onsubmit(() => {
+  
+}) ;
 const send=(img)=>{
   console.log(img);
     fetch(`/image/add`, {
