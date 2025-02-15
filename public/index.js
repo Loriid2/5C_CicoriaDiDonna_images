@@ -36,11 +36,17 @@ const interval = window.setInterval(function(){
 		loginComponent.render();
 		clearInterval(interval);
 	}
-}, 5000);
+}, 2000);
 
 loginComponent.build("5597c861-7ea7-4f3b-be50-2c9f43e31aac", 'private');
 loginComponent.render();
-
+if (loginComponent.isLogged()) {
+	document.querySelector(".loginButton").classList.add("hide") ;
+	document.querySelector("#adminPage").classList.remove("hide") ;
+	console.log(document.querySelector(".loginButton"));
+	loginComponent.render();
+	clearInterval(interval);
+}
 
 const send = (img) => {
 	console.log(img);

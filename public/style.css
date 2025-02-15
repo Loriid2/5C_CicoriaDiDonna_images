@@ -12,7 +12,7 @@
 }
 
 .marginSide {
-  margin-left: 2%;
+  margin-left: 3%;
   margin-right: 3%;
 }
 
@@ -29,6 +29,11 @@ a {
   margin-right: 3%;
   /*font-weight: bold;*/
   font-size: xx-large;
+}
+
+.pushToRight {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .adminButton {
@@ -79,9 +84,9 @@ a {
 
 /* ADMIN LOGIN BUTTON */
 .loginButton {
-  --primary-color: #645bff;
+  --primary-color: #AD2831;
   --secondary-color: #fff;
-  --hover-color: #111;
+  --hover-color: #640D14;
   --arrow-width: 10px;
   --arrow-stroke: 2px;
   box-sizing: border-box;
@@ -170,6 +175,7 @@ a {
 
 .icon {
   font-size: 30px;
+  color: #AD2831;
 }
 
 /* Spinner */ 
