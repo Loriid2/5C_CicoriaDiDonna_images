@@ -12,27 +12,50 @@
 
 <body>
     <div id="container">
-        <nav
-            class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
-            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                    <!-- logo navbar <img src="/assets/images/POI_Logo.png" class="h-8" alt="Point Of Interest Logo">-->
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                        <a href="#home">Slider Immagini</a>
-                    </span>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!--Progetto Slider Immagini-->
+            <button class="button marginSide">
+                <a href="#home">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1024 1024"
+                        stroke-width="0" fill="currentColor" stroke="currentColor" class="icon">
+                        <path
+                            d="M946.5 505L560.1 118.8l-25.9-25.9a31.5 31.5 0 0 0-44.4 0L77.5 505a63.9 63.9 0 0 0-18.8 46c.4 35.2 29.7 63.3 64.9 63.3h42.5V940h691.8V614.3h43.4c17.1 0 33.2-6.7 45.3-18.8a63.6 63.6 0 0 0 18.7-45.3c0-17-6.7-33.1-18.8-45.2zM568 868H456V664h112v204zm217.9-325.7V868H632V640c0-22.1-17.9-40-40-40H432c-22.1 0-40 17.9-40 40v228H238.1V542.3h-96l370-369.7 23.1 23.1L882 542.3h-96.1z">
+                        </path>
+                    </svg>
+                </a>
+                <span class="navText">Home</span>
+            </button>
+            <!-- Button trigger modal -->
+            <button type="button" class="loginButton" data-bs-toggle="modal" data-bs-target="#loginModal">
+                Log in
+                <div class="arrow-wrapper">
+                    <div class="arrow"></div>
                 </div>
-                <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-
-                    <!-- Button trigger modal -->
-                    <button type="button" class="loginButton" data-bs-toggle="modal" data-bs-target="#loginModal">
-                        Sign up
-                        <div class="arrow-wrapper">
-                            <div class="arrow"></div>
-                        </div>
-                    </button>
+            </button>
+            <button type="button" id="adminPage" class="loginButton hide">
+                <a href="#admin">
+                    Admin page
+                </a>
+                <div class="arrow-wrapper">
+                    <div class="arrow"></div>
                 </div>
-            </div>
+            </button>
         </nav>
+
+        <div class="spinner center" id="spinner">
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+        </div>
 
         <!-- Modal -->
         <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -50,26 +73,26 @@
             </div>
         </div>
 
-
-
-        <div id="pagina1" class="page">
+        <div id="home" class="page">
             <h1>Immagini</h1>
             <div id="carousel">
                 <div id="carouselExample" class="carousel slide" data-bs-ride='carousel'>
                     <div class="carousel-inner" id="carouselInner">
-                    
-                        </div>
+
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                      </button>
-                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                      </button>
-  
-                    <!-- <div class="carousel-item active">
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+
+                <!-- <div class="carousel-item active">
                         <img src="..." class="d-block w-100" alt="...">
                       </div>
                       <div class="carousel-item">
@@ -78,15 +101,10 @@
                       <div class="carousel-item">
                         <img src="..." class="d-block w-100" alt="...">
                       </div>-->
-                </div>
             </div>
         </div>
-        <!--<button type="button" id="adminButton" class="btn btn-success">Admin</button>-->
+        <div id="admin" class="page"></div>
     </div>
-    <div id="pagina2" class="page">
-
-    </div>
-    <div id="pagina3" class="page">
 
     </div>
     </div>
