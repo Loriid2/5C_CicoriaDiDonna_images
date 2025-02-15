@@ -2,7 +2,6 @@ export const generateLoginComponent = (parentElement) => {
     let token;
     let isLogged;
     let privateClass;
-    let formID ;
 
     const login = (username, password) => {
         return new Promise((resolve, reject) => {
@@ -28,7 +27,6 @@ export const generateLoginComponent = (parentElement) => {
             token = inputToken;
             isLogged = sessionStorage.getItem("logged") || false;
             privateClass = inputPrivateClass;
-            formID = idForm ;
 
             /*
             if (isLogged) {
@@ -36,8 +34,7 @@ export const generateLoginComponent = (parentElement) => {
                 document.querySelectorAll("." + privateClass).forEach(e => {
                     e.classList.remove("d-none");
                 });
-            }
-                */
+            }*/
         },
         render: () => {
             console.log("render") ; 
@@ -54,10 +51,10 @@ export const generateLoginComponent = (parentElement) => {
                         </form>`;
             parentElement.innerHTML = html;
 
-            document.getElementById("Footer").innerHTML = `<button id="closeButtonLogin" type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            document.getElementById("loginModalFooter").innerHTML = `<button id="closeButtonLogin" type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                                                     <button id="submitButtonLogin" type="button" class="btn btn-success" data-bs-dismiss="modal">Submit</button>`;
 
-            console.log(document.getElementById("Footer").innerHTML) ;
+            console.log(document.getElementById("loginModalFooter").innerHTML) ;
 
             document.getElementById("submitButtonLogin").onclick = () => {
                 const username = document.getElementById("usernameInput").value;
@@ -81,9 +78,11 @@ export const generateLoginComponent = (parentElement) => {
                             loginResultLabel.classList.remove("text-danger") ;
                             loginResultLabel.innerText = "Login effettuato con successo" ;
 
+                            /*
                             setTimeout(() => {
                                 document.getElementById("loginContainer").classList.add("d-none");
                             }, 1500) ;
+                            */
 
                         } else {
                             loginResultLabel.classList.add("text-danger") ;
@@ -97,40 +96,7 @@ export const generateLoginComponent = (parentElement) => {
                 }
             };
 
-            document.getElementById("registerButton").onclick = () => {
-                const username = document.getElementById("usernameInput").value;
-                const password = document.getElementById("passwordInput").value;
-
-                if (username && password) {
-                    register(username, password)
-                    .then(r => {
-                        if (r) {
-                            console.log("registrato e loggato") ;
-                            sessionStorage.setItem("logged", true);
-                            isLogged = true;
-                            document.getElementById("usernameInput").value = "";
-                            document.getElementById("passwordInput").value = "";
-
-                            document.querySelectorAll("." + privateClass).forEach(e => {
-                                e.classList.remove("d-none");
-                            });
-                        
-                            loginResultLabel.classList.add("text-success") ;
-                            loginResultLabel.classList.remove("text-danger") ;
-                            loginResultLabel.innerText = "Registrazione e login effettuati con successo" ;
-
-                            setTimeout(() => {
-                                document.getElementById("loginContainer").classList.add("d-none");
-                                console.log("eugwuwheeufwe") ;
-                            }, 1500) ;
-
-                        }
-                    })
-                    .catch(err => {
-                        console.log(err) ;
-                    });
-                }
-            };
+            
         },
         isLogged: () => {
             return isLogged;

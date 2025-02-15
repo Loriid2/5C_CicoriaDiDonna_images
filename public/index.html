@@ -12,7 +12,6 @@
 
 <body>
     <div id="container">
-
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             Progetto Slider Immagini
             <button class="button marginSide">
@@ -28,12 +27,35 @@
             </button>
             <!-- Button trigger modal -->
             <button type="button" class="loginButton" data-bs-toggle="modal" data-bs-target="#loginModal">
-                Sign up
+                Log in
                 <div class="arrow-wrapper">
                     <div class="arrow"></div>
                 </div>
             </button>
-          </nav>
+            <button type="button" id="adminPage" class="loginButton hide">
+                <a href="#admin">
+                    Admin page
+                </a>
+                <div class="arrow-wrapper">
+                    <div class="arrow"></div>
+                </div>
+            </button>
+        </nav>
+
+        <div class="spinner center hide" id="spinner">
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+        </div>
 
         <!-- Modal -->
         <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -51,26 +73,26 @@
             </div>
         </div>
 
-
-
-        <div id="pagina1" class="page">
+        <div id="home" class="page">
             <h1>Immagini</h1>
             <div id="carousel">
                 <div id="carouselExample" class="carousel slide" data-bs-ride='carousel'>
                     <div class="carousel-inner" id="carouselInner">
-                    
-                        </div>
+
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                      </button>
-                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                      </button>
-  
-                    <!-- <div class="carousel-item active">
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+
+                <!-- <div class="carousel-item active">
                         <img src="..." class="d-block w-100" alt="...">
                       </div>
                       <div class="carousel-item">
@@ -79,15 +101,10 @@
                       <div class="carousel-item">
                         <img src="..." class="d-block w-100" alt="...">
                       </div>-->
-                </div>
             </div>
         </div>
-        <!--<button type="button" id="adminButton" class="btn btn-success">Admin</button>-->
+        <div id="admin" class="page"></div>
     </div>
-    <div id="pagina2" class="page">
-
-    </div>
-    <div id="pagina3" class="page">
 
     </div>
     </div>
