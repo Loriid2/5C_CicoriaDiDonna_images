@@ -2,29 +2,11 @@ export const generateLoginComponent = (parentElement) => {
     let token;
     let isLogged;
     let privateClass;
+    let formID ;
 
     const login = (username, password) => {
         return new Promise((resolve, reject) => {
             fetch("https://ws.cipiaceinfo.it/credential/login", {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json",
-                    "key": token
-                },
-                body: JSON.stringify({
-                    username: username,
-                    password: password
-                })
-            })
-            .then(r => r.json())
-            .then(data => resolve(data.result))
-            .catch(err => reject(err.result));
-        });
-    };
-
-    const register = (username, password) => {
-        return new Promise((resolve, reject) => {
-            fetch("https://ws.cipiaceinfo.it/credential/register", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
@@ -46,15 +28,19 @@ export const generateLoginComponent = (parentElement) => {
             token = inputToken;
             isLogged = sessionStorage.getItem("logged") || false;
             privateClass = inputPrivateClass;
+            formID = idForm ;
 
+            /*
             if (isLogged) {
                 document.getElementById("loginContainer").classList.add("d-none");
                 document.querySelectorAll("." + privateClass).forEach(e => {
                     e.classList.remove("d-none");
                 });
             }
+                */
         },
-        renderForm: () => {
+        render: () => {
+            console.log("render") ; 
             const html = `<form id="loginForm" class="form-inline">
                             <div class="row">
                                 <div class="col">
@@ -63,16 +49,17 @@ export const generateLoginComponent = (parentElement) => {
                                 <div class="col">
                                     <input type="password" id="passwordInput" class="form-control sm" placeholder="Password">
                                 </div>
-                                <div class="col-4">
-                                    <button type="button" id="loginButton" class="btn btn-primary mb-2">Accedi</button>
-                                    <button type="button" id="registerButton" class="btn btn-primary mb-2">Registrati</button>
-                                </div>
                                 <div id="loginResultLabel"></div>
                             </div>
                         </form>`;
             parentElement.innerHTML = html;
 
-            document.getElementById("loginButton").onclick = () => {
+            document.getElementById("Footer").innerHTML = `<button id="closeButtonLogin" type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                                                    <button id="submitButtonLogin" type="button" class="btn btn-success" data-bs-dismiss="modal">Submit</button>`;
+
+            console.log(document.getElementById("Footer").innerHTML) ;
+
+            document.getElementById("submitButtonLogin").onclick = () => {
                 const username = document.getElementById("usernameInput").value;
                 const password = document.getElementById("passwordInput").value;
 
