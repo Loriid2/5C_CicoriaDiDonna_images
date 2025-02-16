@@ -79,19 +79,21 @@
 
         <div id="home" class="page">
             <div class="row justify-content-center">
-                <div class="col-2">
+                <div class="row text-center margin">
                     <h1>Immagini</h1>
+                </div>
+                <div class="col-6">
                     <div id="carousel">
-                        <div id="carouselExample" class="carousel carousel-dark slide" data-bs-ride='carousel'>
+                        <div id="photogallery" class="carousel carousel-dark slide" data-bs-ride='carousel'>
                             <div class="carousel-inner" id="carouselInner">
                                 
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                            <button class="carousel-control-prev" type="button" data-bs-target="#photogallery"
                                 data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                            <button class="carousel-control-next" type="button" data-bs-target="#photogallery"
                                 data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
@@ -103,9 +105,12 @@
         </div>
         <div id="admin" class="page">
             <div class="container">
-                <div class="row">
-                    <input id="file" accept="image/png" name="file" type="file" single>
-                    <button id="buttonUpload" type="button" class="btn btn-success">Upload</button>
+                <div class="row margin">
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="file" accept="image/*">
+                        <button id="buttonUpload" type="button" class="btn btn-success">Upload</button>
+                    </div>
+                    
                 </div>
                 <div class="row">
                     <a id="link"></a>

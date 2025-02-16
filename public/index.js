@@ -85,12 +85,12 @@ const render = () => {
 		if (index == 0) {
 			carouselInner.innerHTML += `
         <div class="carousel-item active">
-            <img src="${img.url}" class="d-block w-50"  alt="...">
+            <img src="${img.url}" class="d-block w-100"  alt="carousel slide">
         </div>`
 		} else {
 			carouselInner.innerHTML += `
         <div class="carousel-item">
-            <img src="${img.url}" class="d-block w-50" alt="...">
+            <img src="${img.url}" class="d-block w-100" alt="carousel slide">
         </div>`
 		}
 	});
