@@ -19,38 +19,31 @@ const loginFormSetup = {
 	"password": ["password", "input margin"],
 };
 
-/*
-fetch("./public/conf.json")
-.then(r => r.json())
-.then(data => {
-   console.log("fetch conf") ;
-
-   loginComponent.build(data.cache.token, 'private') ;
-   loginComponent.render() ;
-   loginComponent.onsubmit(() => {
-	   console.log("submit") ;
-   }) ;
-});
-*/
 const interval = window.setInterval(function(){
 	if (loginComponent.isLogged()) {
 		document.querySelector(".loginButton").classList.add("hide") ;
 		document.querySelector("#adminPage").classList.remove("hide") ;
-		console.log(document.querySelector(".loginButton"));
 		loginComponent.render();
 		clearInterval(interval);
 	}
 }, 2000);
 
-loginComponent.build("5597c861-7ea7-4f3b-be50-2c9f43e31aac", 'private');
-loginComponent.render();
-if (loginComponent.isLogged()) {
-	document.querySelector(".loginButton").classList.add("hide") ;
-	document.querySelector("#adminPage").classList.remove("hide") ;
-	console.log(document.querySelector(".loginButton"));
+fetch("/conf.json")
+.then(r => r.json())
+.then(data => {
+	loginComponent.build(data.cache.token, 'private');
 	loginComponent.render();
-	clearInterval(interval);
-}
+	if (loginComponent.isLogged()) {
+		document.querySelector(".loginButton").classList.add("hide") ;
+		document.querySelector("#adminPage").classList.remove("hide") ;
+		loginComponent.render();
+		clearInterval(interval);
+	}
+});
+
+
+
+
 
 const send = (img) => {
 	console.log(img);
@@ -75,17 +68,18 @@ const getImages = () => {
 			render();
 		});
 }
-const remove = (id) => {
+const remove = async (id) => {
 	fetch(`/image/${id}`, {
 		method: "DELETE",
 		headers: {
 			"Content-Type": "application/json",
 		},
 	})
-		.then((response) => response.json())
-		.then(() => {
-			//logica della delete lato client
-		});
+	.then((response) => response.json())
+	.then((data) => {
+		console.log(data) ;
+		render() ;
+	});
 }
 
 const render = () => {
@@ -124,15 +118,23 @@ render();
 									<img src='${fileUrl.url}' width='30px' height='30px' class='d-block'> 
 									<p>${fileUrl.url}</p>
 								</a>
-								<button id='eliminaButton${index}' class='eliminaButton'>elimina</button>
+								<button id='${fileUrl.id}' class='eliminaButton btn btn-danger'>elimina</button>
 							</li>
 						`;
 					});
 					
 					fileListContainer.innerHTML = htmlContent;
-					
-
 					console.log(fileListContainer.innerHTML);
+
+
+					document.querySelectorAll('.eliminaButton').forEach((e) => {
+						console.log(e);
+						e.onclick = async () => {
+							await remove(e.id) ;
+							await render() ;
+							await loadFileList() ;
+						}
+					})
                 });
 				
     };

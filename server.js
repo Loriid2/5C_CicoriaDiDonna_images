@@ -32,7 +32,7 @@ app.post("/image/add", (req, res) => {
     if (!req.file) {
       return res.status(400).json({ error: "Nessun file caricato" });
     }
-    const image = { url: "./files/" + req.file.filename };
+    const image = { url: "/files/" + req.file.filename };
     serverDB.insert(image)
       .then(() => {
         serverDB.test();
@@ -54,14 +54,6 @@ app.delete("/image/:id", async (req, res) => {
     try {
       await serverDB.del(req.params.id); 
       res.json({ result: "Ok" });
-      fs.unlink(await serverDB.selectById(req.params.id).url, (err) => {
-         if (err) {
-           console.error(`Error removing file: ${err}`);
-           return;
-         }
-       
-         console.log(`File has been successfully removed.`);
-       });
     } catch (error) {
       res.status(500).json({ error: "Errore durante l'eliminazione" });
     }

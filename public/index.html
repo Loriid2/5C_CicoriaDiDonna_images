@@ -14,7 +14,7 @@
     <div id="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <!--Progetto Slider Immagini-->
-            <button class="button marginSide">
+            <button class="button marginSide" onclick="location.href='#home'">
                 <a href="#home">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1024 1024"
                         stroke-width="0" fill="currentColor" stroke="currentColor" class="icon">
@@ -33,15 +33,15 @@
                 </div>
             </button>
             <a href="#admin">
-            <button type="button" id="adminPage" class="loginButton hide">
-                
+                <button type="button" id="adminPage" class="loginButton hide">
+
                     Admin page
-               
-                <div class="arrow-wrapper">
-                    <div class="arrow"></div>
-                </div>
-            </button>
-        </a>
+
+                    <div class="arrow-wrapper">
+                        <div class="arrow"></div>
+                    </div>
+                </button>
+            </a>
         </nav>
 
         <div class="spinner center" id="spinner">
@@ -113,17 +113,17 @@
         <div id="admin" class="page">
             <div class="container">
                 <div class="row">
-                      <input id="file" name="file" type="file" single>
-                      <button id="buttonUpload" type="button" class="btn btn-success">Upload</button>        
+                    <input id="file" accept="image/png" name="file" type="file" single>
+                    <button id="buttonUpload" type="button" class="btn btn-success">Upload</button>
                 </div>
                 <div class="row">
-                   <a id="link"></a>
-                   <ul id="fileList">
-                    
-                   </ul>
+                    <a id="link"></a>
+                    <ul id="fileList">
+
+                    </ul>
                 </div>
-             </div>
-            
+            </div>
+
         </div>
     </div>
 
