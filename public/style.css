@@ -58,6 +58,11 @@ div {
   object-fit: scale-down;
 }
 
+::selection {
+  color: white;
+  background-color: #AD2831;
+}
+
 /* INPUT */
 .inputGroup {
   font-family: 'Segoe UI', sans-serif;
