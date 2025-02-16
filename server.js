@@ -26,19 +26,22 @@ app.use("/files", express.static(path.join(__dirname, "files")));
 
 app.post("/image/add", (req, res) => {
   upload(req, res, (err) => {
-      if (err) {
-          return res.status(500).json({ error: "Errore durante il caricamento del file" });
-      }
-      console.log(req.body.url);
-      const image = { url: "./files/" + req.body.url};
-      serverDB.insert(image)
-          .then(() => {
-              serverDB.test(); 
-              res.json({ url: image.url });
-          })
-          .catch(error => res.status(500).json({ error: "Errore durante l'inserimento nel database" }));
+    if (err) {
+      return res.status(500).json({ error: "Errore durante il caricamento del file" });
+    }
+    if (!req.file) {
+      return res.status(400).json({ error: "Nessun file caricato" });
+    }
+    const image = { url: "./files/" + req.file.filename };
+    serverDB.insert(image)
+      .then(() => {
+        serverDB.test();
+        res.json({ url: image.url });
+      })
+      .catch(error => res.status(500).json({ error: "Errore durante l'inserimento nel database" }));
   });
 });
+
  app.get("/image", async (req, res) => {
     try {
         const images = await serverDB.select();

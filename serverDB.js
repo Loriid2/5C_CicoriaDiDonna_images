@@ -62,7 +62,7 @@ const serverDB = {
     },
     clear : function(){
         const sql = `
-        DELETE FROM images
+        TRUNCATE TABLE images
         `;
         return executeQuery(sql);
     }

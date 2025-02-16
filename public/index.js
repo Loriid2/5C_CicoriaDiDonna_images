@@ -6,6 +6,10 @@ const adminButton = document.querySelector('#adminButton');
 const navigator = createNavigator();
 location.href = "#home";
 const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+const inputFile = document.querySelector('#file');
+    const button = document.querySelector("#buttonUpload");
+    const link = document.querySelector("#link");
+    const fileListContainer = document.querySelector("#fileList");
 
 const loginComponent = generateLoginComponent(document.getElementById('loginModalBody')) ;
 let images = [];
@@ -103,3 +107,59 @@ const render = () => {
 }
 getImages();
 render();
+
+(async () => {
+    
+    const loadFileList =  () => {
+            fetch("/image")
+                .then(res => {return res.json();})
+                .then(files => {
+					console.log(files.images);
+			
+					let htmlContent = '';
+					files.images.forEach((fileUrl, index) => {
+						htmlContent += `
+							<li style="display: flex; align-items: center; gap: 10px;">
+								<a href="${fileUrl.url}" target="_blank">
+									<img src='${fileUrl.url}' width='30px' height='30px' class='d-block'> 
+									<p>${fileUrl.url}</p>
+								</a>
+								<button id='eliminaButton${index}' class='eliminaButton'>elimina</button>
+							</li>
+						`;
+					});
+					
+					fileListContainer.innerHTML = htmlContent;
+					
+
+					console.log(fileListContainer.innerHTML);
+                });
+				
+    };
+
+	const handleSubmit  = async () => {
+		const formData = new FormData();
+		formData.append("file", inputFile.files[0]);
+	  
+		try {
+		  const response = await fetch(`/image/add`, {
+			method: "POST",
+			body: formData,
+		  });
+		  const result = await response.json();
+		  console.log("Risultato della POST:", result);
+		  link.href = result.url;
+		  loadFileList();
+		} catch (e) {
+		  console.log(e);
+		}
+	  };
+	  
+	button.onclick = handleSubmit;
+
+    
+
+    loadFileList();
+	getImages();
+	render();
+})();
