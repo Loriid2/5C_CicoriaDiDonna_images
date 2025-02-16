@@ -31,13 +31,19 @@ a {
   font-size: xx-large;
 }
 
-.pushToRight {
+#navButtonsContainer {
+  width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: end;
+  margin-right: 3%;
 }
 
 .adminButton {
   float: right;
+}
+
+#carousel {
+  margin-top: 10%;
 }
 
 /* INPUT */

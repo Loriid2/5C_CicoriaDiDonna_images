@@ -42,9 +42,6 @@ fetch("/conf.json")
 });
 
 
-
-
-
 const send = (img) => {
 	console.log(img);
 	fetch(`/image/add`, {
@@ -110,18 +107,31 @@ render();
                 .then(files => {
 					console.log(files.images);
 			
-					let htmlContent = '';
+					let htmlContent = `
+					<table class="table table-striped table-bordered table-hover margin">
+						<thead class="table-dark">
+							<tr>
+								<th>Anteprima</th>
+								<th>Link</th>
+								<th>Azione</th>
+							</tr>
+						</thead>
+						<tbody>`;
 					files.images.forEach((fileUrl, index) => {
 						htmlContent += `
-							<li style="display: flex; align-items: center; gap: 10px;">
-								<a href="${fileUrl.url}" target="_blank">
-									<img src='${fileUrl.url}' width='30px' height='30px' class='d-block'> 
-									<p>${fileUrl.url}</p>
-								</a>
-								<button id='${fileUrl.id}' class='eliminaButton btn btn-danger'>elimina</button>
-							</li>
-						`;
+									<tr>
+										<td style="text-align: center; vertical-align: middle;">
+											<img src="${fileUrl.url}" width="30px" height="30px" class="d-block">
+										</td>
+										<td style="vertical-align: middle;">
+											<a href="${fileUrl.url}" target="_blank">${fileUrl.url}</a>
+										</td>
+										<td style="text-align: center; vertical-align: middle;">
+											<button id="${fileUrl.id}" class="eliminaButton btn btn-danger">Elimina</button>
+										</td>
+									</tr>`;
 					});
+					htmlContent += '</tbody></table>' ;
 					
 					fileListContainer.innerHTML = htmlContent;
 					console.log(fileListContainer.innerHTML);
